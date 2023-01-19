@@ -80,7 +80,7 @@ Task("Build")
 
 Task("Publish-NuGet")
  //.WithCriteria(ctx => BuildSystem.IsRunningOnGitHubActions, "Not running on GitHub Actions")
- //.IsDependentOn("Package")
+ .IsDependentOn("Build")
  .Does(context =>
 {
  var apiKey = Argument<string>("nuget-key", null);
