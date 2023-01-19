@@ -15,7 +15,7 @@ Task("Build")
     .IsDependentOn("Clean")
     .Does(context =>
 {
-    DotNetPublish("./src/dot.csproj", new DotNetPublishSettings {
+    DotNetPublish("./src/NSCodeAnalysis.csproj", new DotNetPublishSettings {
         Configuration = configuration,
         Framework = framework,
     });
@@ -89,7 +89,7 @@ Task("Publish-NuGet")
  }
 
  // Publish to GitHub Packages
- foreach(var file in context.GetFiles("./.artifacts/*.nupkg"))
+ foreach(var file in context.GetFiles("./dist/NSCodeAnalysis/bin/*.*"))
  {
      context.Information("Publishing {0}...", file.GetFilename().FullPath);
      DotNetNuGetPush(file.FullPath, new DotNetNuGetPushSettings
